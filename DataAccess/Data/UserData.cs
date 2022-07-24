@@ -7,7 +7,7 @@ using DataAccess.DbAccess;
 using DataAccess.Models;
 
 namespace DataAccess.Data;
-internal class UserData
+internal class UserData : IUserData
 {
     private readonly ISqlDataAccess _db;
     public UserData(ISqlDataAccess db)
@@ -28,6 +28,6 @@ internal class UserData
 
     public Task UpdateUser(UserModel user) => _db.SaveData(storedProcedure: "dbo.spUser_Update", user);
 
-    public Task DeleteUser(int id) => _db.SaveData(storedProcedure: "dbo.spUser_Delete", new {Id = id});
+    public Task DeleteUser(int id) => _db.SaveData(storedProcedure: "dbo.spUser_Delete", new { Id = id });
 
 }
